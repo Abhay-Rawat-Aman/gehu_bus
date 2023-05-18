@@ -1,0 +1,71 @@
+.sidebar {
+	flex: 1;
+	border-right: 0.5px solid #a30dcd;
+	min-height: 100vh;
+	background-color: white;
+}
+.sidebar .top {
+	height: 50px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+.sidebar .top .logo {
+	font-size: 20px;
+	font-weight: bold;
+	color: chocolate;
+}
+.sidebar hr {
+	height: 0;
+	border: 0.5px solid #a30dcd;
+}
+.sidebar .center {
+	padding-left: 0px;
+}
+.sidebar .center ul {
+	list-style: none;
+	margin: 0;
+	padding: 0px;
+}
+.sidebar .center li {
+	display: flex;
+	align-items: center;
+	padding: 5px;
+	cursor: pointer;
+}
+.sidebar .center li:hover {
+	background-color: rgba(238, 130, 7, 0.937);
+}
+.sidebar .center li .icon {
+	font-size: 30px;
+	color: #1d0baa;
+	margin-bottom: 30px;
+}
+.sidebar .center li span {
+	font-size: 18px;
+	font-weight: 500;
+	margin-bottom: 20px;
+	margin-left: 10px;
+}
+.sidebar .bottom {
+	display: flex;
+	align-items: center;
+	margin: 10px;
+}
+.sidebar .bottom .colorOption {
+	width: 20px;
+	height: 20px;
+	border-radius: 5px;
+	border: 1px solid lightblue;
+	cursor: pointer;
+	margin: 5px;
+}
+.sidebar .bottom .colorOption:nth-child(1) {
+	background-color: burlywood;
+}
+.sidebar .bottom .colorOption:nth-child(2) {
+	background-color: #9914db;
+}
+.sidebar .bottom .colorOption:nth-child(3) {
+	background-color: #ee872c;
+}
