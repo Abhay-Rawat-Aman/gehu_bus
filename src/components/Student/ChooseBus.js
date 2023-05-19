@@ -10,8 +10,8 @@ const ChooseBus = () => {
     const [busNoValid,setBusNoValid] = useState(true);
     const [choosebus,setChooseBus] = useState({
       student_id:localStorage.getItem('id'),
-      stop_name:"",
-      bus_number:"",
+      stop_name:"6464c6b5f1607bf4fcdad573",
+      bus_number:"6463c8b6a3b5b45d4da2710c",
     });
 
     let lct = [];
@@ -42,9 +42,10 @@ const ChooseBus = () => {
     body:JSON.stringify({stop_name:'Block'})  
   });
   const json = await response.json();
+  console.log(json);
   let ll = [];
   for(let l = 0;l<json.bus_details.length;l++)
-    ll.push(json.bus_details[l].collage_bus_no);
+    ll.push({bus_no:json.bus_details[l].bus_no,collage_bus_no:json.bus_details[l].collage_bus_no});
   //console.log(ll);
   setBus_no(ll);
 }
@@ -72,13 +73,13 @@ const ChooseBus = () => {
       else
       {
         loadLocation();
-        setChooseBus({...choosebus,stop_name:e.target.value});
-        console.log(choosebus);
         setLocationValid(false);
       }
     }
     const ChangeLocation = (e) =>{
       console.log(e.target.value);
+      setChooseBus({...choosebus,stop_name:e.target.value});
+      console.log(choosebus);
       loadBusNo();
       setBusNoValid(false);
     }

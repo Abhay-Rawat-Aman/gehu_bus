@@ -1,14 +1,51 @@
-import React from 'react'
+import React,{useState} from 'react'
 import Footer from '../Home/Footer'
 import NavHome from '../Home/NavHome'
+import { useHistory } from 'react-router-dom';
 
 const ConductorLogin = () => {
+  const [cedentials,setCedentials] = useState({
+    cuser:"",
+    cpass:""
+  });
+
+  const history = useHistory();
+  const onChange = (e) => {
+    setCedentials({...cedentials,[e.target.name]:e.target.value})
+  }
+
+  const formSubmit = async(e) => {
+    e.preventDefault();
+    const response = await fetch("http://localhost:4000/api/conductor/login",{
+      method:'POST',headers:{
+        'Content-Type':'application/json',
+      },
+      body:JSON.stringify({username:cedentials.cuser,password:cedentials.cpass})
+    });
+    const json = await response.json();
+    //console.log(json);
+    if(json.conductorSuccess==false)
+      alert(json.message);
+    else
+    {
+      localStorage.setItem("token",json.token);
+      localStorage.setItem("bus_details",JSON.stringify(json.bus));
+      
+      
+      // localStorage.setItem("name",json.name);
+      //localStorage.setItem("id",json.id);
+      //localStorage.setItem("bus_detials",JSON.stringify(json.bus_detials));//json.bus_detials._id;
+      history.push('/conductor/home');
+    }
+  }
+
+
   return (
     <>
         <NavHome/>
 
         <main id="main">
-        <form method="post">
+        <form method="post" onSubmit={formSubmit}>
         <section id="hero" className="hero d-flex align-items-center">
       <div className="container py-5 h-100">
         <div className="row d-flex justify-content-center align-items-center h-100">
@@ -27,13 +64,13 @@ const ConductorLogin = () => {
     
                     <div className="form-outline mb-4">
                     <label className="form-label" htmlFor="form3Example8">Conductor Id</label>
-                      <input type="number" id="cuser" className="form-control form-control-lg" name="id" required />
+                      <input type="email"onChange={onChange} id="cuser" className="form-control form-control-lg" name="cuser" required />
                     </div>
                     
                     
                     <div className="form-outline mb-4">
                       <label className="form-label" htmlFor="form3Example8">Password</label>
-                      <input type="password" id="cpass" autoComplete='off' className="form-control form-control-lg" name="pass" required />
+                      <input type="password" onChange={onChange} id="cpass" autoComplete='off' className="form-control form-control-lg" name="cpass" required />
                     </div>
                     
                     

@@ -17,17 +17,17 @@ const StudentLogin = () => {
     setCedentials({...cedentials,[e.target.name]:e.target.value})
   }
 
-  const entry_bus = async(student_id) =>{
-    const response = await fetch("http://localhost:4000/api/studentds/chooseBus",{
-      method:'POST',headers:{
-        'Content-Type':'application/json',
-        'auth-token':localStorage.getItem('token')
-      },
-    });
-    const json = await response.json();
-    console.log(json);
-    return json.status;
-  }
+  // const entry_bus = async(student_id) =>{
+  //   const response = await fetch("http://localhost:4000/api/studentds/chooseBus",{
+  //     method:'POST',headers:{
+  //       'Content-Type':'application/json',
+  //       'auth-token':localStorage.getItem('token')
+  //     },
+  //   });
+  //   const json = await response.json();
+  //   console.log(json.success);
+  //   return json.success;
+  // }
   const formSubmit = async(e) => {
     e.preventDefault();
     const response = await fetch("http://localhost:4000/api/studentds/login",{
@@ -37,7 +37,7 @@ const StudentLogin = () => {
       body:JSON.stringify({student_id:cedentials.student_id,password:cedentials.password})
     });
     const json = await response.json();
-    console.log(json.statusStudentDS);
+    //console.log(json.statusStudentDS);
     if(json.statusStudentDS==false)
       alert(json.message);
     else
@@ -45,13 +45,19 @@ const StudentLogin = () => {
       localStorage.setItem("token",json.token);
       localStorage.setItem("name",json.name);
       localStorage.setItem("id",json.id);
+      localStorage.setItem("bus_detials",JSON.stringify(json.bus_detials));//json.bus_detials._id;
+      //console.log(JSON.parse(localStorage.getItem("bus_detials")));
+      //let x=entry_bus(json.student_id);
+      //console.log(json.bus_detials._id);
       //localStorage.setItem("student_id",json.student_id);
-      if(entry_bus(json.student_id)==true)
-      {
-          history.push('/student_home');
-      }
-      else
-      history.push('/choose_bus');
+      history.push('/student_home');
+      // if(entry_bus(json.student_id)===true)
+      // {
+      //   alert('aman');
+      //     history.push('/student_home');
+      // }
+      // else
+      //   history.push('/choose_bus');
     }
     //console.log(json.error);
   }

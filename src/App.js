@@ -15,12 +15,15 @@ import ConductorHome from "./components/Conductor/ConductorHome";
 import RandT from "./components/Student/RandT";
 import StudentPrice from "./components/Student/StudentPrice";
 import Morning from "./components/Student/Morning";
+import StudentLogout from "./components/Student/StudentLogout";
 import ChooseBus from "./components/Student/ChooseBus";
 import CamplaintStudent from "./components/Student/CamplaintStudent";
 import ChangePasswordStudent from "./components/Student/ChangePasswordStudent";
 import StudentNotice from "./components/Student/StudentNotice";
 import EditDetailStudent from "./components/Student/EditDetailStudent";
 import AdminHome from "./components/Admin/AdminHome";
+import BusDetail from "./components/Conductor/BusDetail";
+import ConductorLogout from "./components/Conductor/ConductorLogout";
 
 
 function App() {
@@ -93,6 +96,9 @@ function App() {
         <Route exact path="/student_edit_details">
           <EditDetailStudent/>
         </Route>
+        <Route exact path="/student_logout">
+          <StudentLogout/>
+        </Route>
 
         {/* Admin Panel */}        
         <Route exact path="/admin/home">
@@ -100,8 +106,14 @@ function App() {
         </Route>
         
         {/*Conductor Panel */}
-        <Route exact path='/conductor_home'>
+        <Route exact path='/conductor/home'>
           <ConductorHome/>
+        </Route>
+        <Route exact path='/conductor/busdetails'>
+          <BusDetail/>
+        </Route>
+        <Route exact path='/conductor/logout'>
+          <ConductorLogout/>
         </Route>
 {/*         
         <Route exact path="/*">

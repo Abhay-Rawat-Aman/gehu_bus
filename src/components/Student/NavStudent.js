@@ -4,12 +4,13 @@ import { Link, useHistory } from 'react-router-dom';
 const NavStudent = () => {
 
     const history = useHistory();
-    if(!localStorage.getItem('token'))
-      history.push('/');
-    console.log(localStorage.getItem('student_id'));
-    if(localStorage.getItem('token') && !localStorage.getItem('student_id'))
-      history.push('/choose_bus');
-
+    useEffect(()=>{
+      if(!localStorage.getItem('token'))
+        history.push('../');
+        //console.log(localStorage.getItem("bus_detials"));
+      
+    },[]);
+    
     const [top, setTop] = useState(false);
     const hadleInfiniteScroll = async () => {
 		try {
@@ -115,7 +116,7 @@ const NavStudent = () => {
             <ul style={mystyleul}>
                 <li><Link to="student_change_password" style={mystylelih}>Change Password</Link></li>
                 <li><Link to="student_edit_details" style={mystylelih}>Edit Details</Link><hr style={{backgroundColor:'white',height:'5px'}}/></li>
-                <li><Link to="#" style={mystylelih}>Log Out</Link></li>
+                <li><Link to="student_logout" style={mystylelih}>Log Out</Link></li>
             </ul>
           </li>
 
